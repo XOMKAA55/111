@@ -66,7 +66,7 @@
         <view hlookat="-30.0" vlookat="10.0" fovtype="MFOV" fov="90" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto"/>
         <preview url="panos/DJI_0309.tiles/preview.jpg"/>
         <image>
-            <cube url="panos/DJI_0309.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,640,1280,2624"/>
+            <cube url="DJI_0309.tiles/preview.jpg" multires="512,640,1280,2624"/>
         </image>
 
         <!-- Горячая точка для первого дома -->
