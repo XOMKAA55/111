@@ -1,0 +1,147 @@
+﻿<krpano version="1.22" title="Virtual Tour">
+
+    <include url="skin/vtourskin.xml"/>
+
+    <!-- Настройки интерфейса -->
+    <skin_settings maps="true"
+                   maps_type="google"
+                   maps_bing_api_key=""
+                   maps_google_api_key=""
+                   maps_zoombuttons="false"
+                   maps_loadonfirstuse="true"
+                   gyro="true"
+                   gyro_keeplookingdirection="false"
+                   webvr="true"
+                   webvr_keeplookingdirection="true"
+                   webvr_prev_next_hotspots="true"
+                   autotour="false"
+                   littleplanetintro="false"
+                   followmousecontrol="false"
+                   title="true"
+                   thumbs="true"
+                   thumbs_width="120" thumbs_height="80" thumbs_padding="10" thumbs_crop="0|40|240|160"
+                   thumbs_opened="false"
+                   thumbs_text="false"
+                   thumbs_dragging="true"
+                   thumbs_onhoverscrolling="false"
+                   thumbs_scrollbuttons="false"
+                   thumbs_scrollindicator="false"
+                   thumbs_loop="false"
+                   tooltips_buttons="false"
+                   tooltips_thumbs="false"
+                   tooltips_hotspots="true"
+                   tooltips_mapspots="false"
+                   deeplinking="false"
+                   loadscene_flags="MERGE"
+                   loadscene_blend="OPENBLEND(0.5, 0.0, 0.75, 0.05, linear)"
+                   loadscene_blend_prev="SLIDEBLEND(0.5, 180, 0.75, linear)"
+                   loadscene_blend_next="SLIDEBLEND(0.5,   0, 0.75, linear)"
+                   loadingtext=""
+                   layout_width="100%"
+                   layout_maxwidth="814"
+                   controlbar_width="-24"
+                   controlbar_height="40"
+                   controlbar_offset="20"
+                   controlbar_offset_closed="-40"
+                   controlbar_overlap.no-fractionalscaling="10"
+                   controlbar_overlap.fractionalscaling="0"
+                   design_skin_images="vtourskin.png"
+                   design_bgcolor="0x2D3E50"
+                   design_bgalpha="0.8"
+                   design_bgborder="0"
+                   design_bgroundedge="1"
+                   design_bgshadow="0 4 10 0x000000 0.3"
+                   design_thumbborder_bgborder="3 0xFFFFFF 1.0"
+                   design_thumbborder_padding="2"
+                   design_thumbborder_broundedge="0"
+                   design_text_css="color:#FFFFFF; font-family:Arial;"
+                   design_text_shadow="1"/>
+
+    <!-- Стиль для горячих точек -->
+    <style name="defaultstyle" border="true" bordercolor="0xFFFFFF" borderwidth="2" />
+
+    <!-- Сцена панорамы -->
+    <scene name="scene_dji_0309" title="DJI_0309" lat="54.97470550" lng="83.15311903" alt="679.00">
+        <control bouncinglimits="calc:image.cube ? true : false"/>
+        <view hlookat="-30.0" vlookat="10.0" fovtype="MFOV" fov="90" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto"/>
+        <preview url="panos/DJI_0309.tiles/preview.jpg"/>
+        <image>
+            <cube url="panos/DJI_0309.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,640,1280,2624"/>
+        </image>
+
+        <!-- Горячая точка для первого дома -->
+        <hotspot name="customPolygon"
+                 style="defaultstyle"
+                 fillcolor="0xFF0000"
+                 fillalpha="0.7"
+                 bordercolor="0x000000"
+                 borderwidth="2"
+                 borderalpha="1.0"
+                 price="3 500 000 ₽"
+                 house_number="Дом 1"
+                 onclick="showInfoCustom(get(name), get(price), get(house_number), mouse.x, mouse.y);"
+                 onout="hideInfoCustom();"
+                 tooltip="Дом 1">
+            <point ath="-19" atv="48" />
+            <point ath="-14" atv="49" />
+            <point ath="-12" atv="46" />
+            <point ath="-17" atv="45" />
+        </hotspot>
+
+        <!-- Горячая точка для второго дома -->
+        <hotspot name="customPolygon1"
+                 style="defaultstyle"
+                 fillcolor="0xFF0000"
+                 fillalpha="0.7"
+                 bordercolor="0x000000"
+                 borderwidth="2"
+                 borderalpha="1.0"
+                 price="4 200 000 ₽"
+                 house_number="Дом 2"
+                onclick="showInfoCustom();"
+                 onout="hideInfoCustom();"
+                 tooltip="Дом 2">
+            <point ath="-27" atv="47" />
+            <point ath="-20" atv="48" />
+            <point ath="-18" atv="45" />
+            <point ath="-23" atv="43" />
+        </hotspot>
+    </scene>
+
+    <!-- Всплывающая информация -->
+ <layer name="infoBox"
+       type="container"
+       visible="true" 
+       align="topleft"
+       x="200" y="200"
+       bgcolor="0x000000"
+       bgalpha="0.8"
+       width="150"
+       height="60"
+       border="2"
+       bordercolor="0xFFFFFF"
+       roundedge="5"
+       enabled="false">
+    <layer name="infoText"
+           type="text"
+           html="Просто тест"
+           css="color:#FFFFFF; font-size:14px; text-align:center;"
+           align="center"
+           width="140"
+           height="50"/>
+</layer>
+
+    <!-- Действия -->
+<action name="showInfoCustom">
+    set(layer[infoBox].x, 200);
+    set(layer[infoBox].y, 200);
+    set(layer[infoBox].visible, true);
+    set(layer[infoText].html, "Тестовый текст");
+</action>
+<action name="showInfoCustom">
+    set(layer[infoBox].visible, true);
+</action>
+
+
+
+</krpano>
