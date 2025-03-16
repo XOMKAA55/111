@@ -64,9 +64,9 @@
     <scene name="scene_dji_0309" title="DJI_0309" lat="54.97470550" lng="83.15311903" alt="679.00">
         <control bouncinglimits="calc:image.cube ? true : false"/>
         <view hlookat="-30.0" vlookat="10.0" fovtype="MFOV" fov="90" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto"/>
-        <preview url="panos/DJI_0309.tiles/preview.jpg"/>
+        <preview url="DJI_0309.JPG"/>
         <image>
-            <cube url="DJI_0309.tiles/preview.jpg" multires="512,640,1280,2624"/>
+            <cube url="DJI_0309.JPG" multires="512,640,1280,2624"/>
         </image>
 
         <!-- Горячая точка для первого дома -->
@@ -98,7 +98,7 @@
                  borderalpha="1.0"
                  price="4 200 000 ₽"
                  house_number="Дом 2"
-                onclick="showInfoCustom();"
+                 onclick="showInfoCustom(get(name), get(price), get(house_number), mouse.x, mouse.y);"
                  onout="hideInfoCustom();"
                  tooltip="Дом 2">
             <point ath="-27" atv="47" />
@@ -109,39 +109,37 @@
     </scene>
 
     <!-- Всплывающая информация -->
- <layer name="infoBox"
-       type="container"
-       visible="true" 
-       align="topleft"
-       x="200" y="200"
-       bgcolor="0x000000"
-       bgalpha="0.8"
-       width="150"
-       height="60"
-       border="2"
-       bordercolor="0xFFFFFF"
-       roundedge="5"
-       enabled="false">
-    <layer name="infoText"
-           type="text"
-           html="Просто тест"
-           css="color:#FFFFFF; font-size:14px; text-align:center;"
-           align="center"
-           width="140"
-           height="50"/>
-</layer>
+    <layer name="infoBox"
+           type="container"
+           visible="false" 
+           align="topleft"
+           x="200" y="200"
+           bgcolor="0x000000"
+           bgalpha="0.8"
+           width="150"
+           height="60"
+           border="2"
+           bordercolor="0xFFFFFF"
+           roundedge="5"
+           enabled="false">
+        <layer name="infoText"
+               type="text"
+               html="Просто тест"
+               css="color:#FFFFFF; font-size:14px; text-align:center;"
+               align="center"
+               width="140"
+               height="50"/>
+    </layer>
 
     <!-- Действия -->
-<action name="showInfoCustom">
-    set(layer[infoBox].x, 200);
-    set(layer[infoBox].y, 200);
-    set(layer[infoBox].visible, true);
-    set(layer[infoText].html, "Тестовый текст");
-</action>
-<action name="showInfoCustom">
-    set(layer[infoBox].visible, true);
-</action>
-
-
+    <action name="showInfoCustom(name, price, house_number, x, y)">
+        set(layer[infoBox].visible, true);
+        set(layer[infoBox].x, x);
+        set(layer[infoBox].y, y);
+        set(layer[infoText].html, 'Цена: ' + price + '<br>Номер дома: ' + house_number);
+    </action>
+    <action name="hideInfoCustom">
+        set(layer[infoBox].visible, false);
+    </action>
 
 </krpano>
