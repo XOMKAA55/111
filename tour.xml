@@ -131,13 +131,7 @@
                height="50"/>
     </layer>
 
-    <!-- Действия -->
-    <action name="showInfoCustom(name, price, house_number, x, y)">
-        set(layer[infoBox].visible, true);
-        set(layer[infoBox].x, x);
-        set(layer[infoBox].y, y);
-        set(layer[infoText].html, 'Цена: ' + price + '<br>Номер дома: ' + house_number);
-    </action>
+   
     <action name="hideInfoCustom">
         set(layer[infoBox].visible, false);
     </action>
